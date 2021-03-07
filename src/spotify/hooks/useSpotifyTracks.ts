@@ -1,6 +1,9 @@
 import Spotify from 'spotify-web-api-js';
 
-export const useSpotifyTracks = async (resourceUrl: string): Promise<void> => {
+export const useSpotifyTracks = async (resourceUrl: string): Promise<any> => {
+  if (typeof window === 'undefined') {
+    return [];
+  }
   const spotify = new Spotify();
   spotify.setAccessToken(process.env.SPOTIFY_CLIENT_SECRET);
   try {
