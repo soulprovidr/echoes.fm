@@ -1,5 +1,7 @@
 # {{ echoes.fm }}
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/82970d56-0e81-4a23-b593-3293caa08fdd/deploy-status)](https://app.netlify.com/sites/echoes-fm/deploys)
+
 ## Getting Started
 
 First, run the development server:
