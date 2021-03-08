@@ -19,7 +19,7 @@ export const authorize = async (): Promise<void> => {
     );
     expiresAt = new Date().getTime() + data.expires_in;
     spotifyApi.setAccessToken(data.access_token);
-  } catch (e: AxiosError<SpotifyErrorResponse> | Error) {
+  } catch (e) {
     if (e.response) {
       console.log(e.response.data);
     } else {
@@ -30,7 +30,7 @@ export const authorize = async (): Promise<void> => {
 };
 
 export const authorizeUser = (): void => {
-  const clientId = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID;
+  const clientId = <string>process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID;
   const scopes = [
     'streaming',
     'user-read-private',
@@ -41,6 +41,6 @@ export const authorizeUser = (): void => {
   spotifyParams.set('redirect_uri', window.location.origin);
   spotifyParams.set('response_type', 'token');
   spotifyParams.set('scopes', scopes.join(' '));
-  spotifyParams.set('show_dialog', false);
-  window.location = `https://accounts.spotify.com/authorize?${spotifyParams.toString()}`;
+  spotifyParams.set('show_dialog', 'false');
+  window.location.href = `https://accounts.spotify.com/authorize?${spotifyParams.toString()}`;
 };

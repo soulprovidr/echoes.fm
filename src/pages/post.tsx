@@ -8,8 +8,10 @@ import styles from '../styles/post.css';
 export default function Post(): JSX.Element {
   const playlist = usePlaylist('spotify:playlist:4K11baS8iLqzmovHpg2T7R');
   const handlePlay = () => {
-    const win = window.open(playlist.uri);
-    win.close();
+    if (playlist) {
+      const win = window.open(playlist.uri);
+      if (win) win.close();
+    }
   };
   return (
     <Layout>

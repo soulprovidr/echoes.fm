@@ -1,5 +1,6 @@
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 import querystring from 'querystring';
+import type { AxiosError } from 'axios';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import type {
   SpotifyAuthorizationResponse,
@@ -28,12 +29,14 @@ export default async (
       data,
     });
     res.status(200).json(responseData);
-  } catch (e: AxiosError | Error) {
+  } catch (e) {
     if (e.response) {
       const { data: responseData, status } = e.response;
       res.status(status).json(responseData);
     } else {
-      res.status(500).json({ error: 'server_error', error_description });
+      res
+        .status(500)
+        .json({ error: 'server_error', error_description: e.message });
     }
   }
 };

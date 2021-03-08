@@ -11,12 +11,15 @@ const getIdFromUri = (uri: string): string => {
 
 export const usePlaylist = (
   playlistUri: string
-): SpotifyApi.SinglePlaylistResponse => {
+): SpotifyApi.SinglePlaylistResponse | null => {
   if (typeof window === 'undefined') {
     return null;
   }
-  const [playlist, setPlaylist] = useState(null);
-  useEffect((): EffectCallback => {
+  const [
+    playlist,
+    setPlaylist,
+  ] = useState<SpotifyApi.SinglePlaylistResponse | null>(null);
+  useEffect(() => {
     (async () => {
       try {
         const playlistId = getIdFromUri(playlistUri);
