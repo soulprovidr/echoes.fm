@@ -10,7 +10,11 @@ export default function Post(): JSX.Element {
   const handlePlay = () => {
     if (playlist) {
       const win = window.open(playlist.uri);
-      if (win) win.close();
+      if (win) {
+        setTimeout(() => {
+          win.close();
+        }, 100);
+      }
     }
   };
   return (
