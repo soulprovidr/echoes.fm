@@ -9,12 +9,7 @@ export default function Post(): JSX.Element {
   const playlist = usePlaylist('spotify:playlist:4K11baS8iLqzmovHpg2T7R');
   const handlePlay = () => {
     if (playlist) {
-      const win = window.open(playlist.uri);
-      if (win) {
-        setTimeout(() => {
-          win.close();
-        }, 100);
-      }
+      window.open(playlist.uri, '_self');
     }
   };
   return (
